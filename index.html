@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLUB NOIR TOKYO | 六本木</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+JP:wght@300;400;500&family=Cinzel:wght@400;500&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080808;
+    --surface: #0f0f0f;
+    --surface2: #141414;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-dim: rgba(201,168,76,0.15);
+    --white: #f5f0e8;
+    --muted: #7a7060;
+    --border: rgba(201,168,76,0.15);
+    --serif: 'Cormorant Garamond', serif;
+    --title: 'Cinzel', serif;
+    --mono: 'Space Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Noto Sans JP', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(8,8,8,0.95) 0%, transparent 100%);
+  }
+
+  .nav-logo {
+    font-family: var(--title);
+    font-size: 1.2rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: rgba(245,240,232,0.6);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ─── HERO ─── */
+  .hero {
+    height: 100vh;
+    min-height: 700px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 30%, rgba(201,168,76,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 50% at 20% 80%, rgba(100,60,20,0.15) 0%, transparent 50%),
+      radial-gradient(ellipse 40% 50% at 80% 20%, rgba(100,60,20,0.1) 0%, transparent 50%);
+    background-color: #050505;
+  }
+
+  .hero-particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .particle {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: float linear infinite;
+    opacity: 0;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.3; }
+    100% { transform: translateY(-20px) translateX(30px); opacity: 0; }
+  }
+
+  .hero-ornament {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.06);
+    pointer-events: none;
+  }
+
+  .hero-ornament::before {
+    content: '';
+    position: absolute;
+    inset: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.04);
+  }
+
+  .hero-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    padding: 0 24px;
+  }
+
+  .hero-pre {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-bottom: 24px;
+    opacity: 0.7;
+  }
+
+  .hero-title {
+    font-family: var(--title);
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    color: var(--white);
+  }
+
+  .hero-subtitle {
+    font-family: var(--title);
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    font-weight: 400;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    margin-bottom: 32px;
+  }
+
+  .hero-divider {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 28px;
+  }
+
+  .hero-copy {
+    font-family: var(--serif);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 300;
+    color: rgba(245,240,232,0.65);
+    letter-spacing: 0.1em;
+    line-height: 1.9;
+    margin-bottom: 48px;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    padding: 14px 40px;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+    font-family: var(--mono);
+  }
+
+  .hero-cta:hover {
+    background: var(--gold);
+    color: var(--bg);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  .hero-scroll::after {
+    content: '';
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+
+  /* ─── SECTION BASE ─── */
+  section {
+    padding: 120px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    opacity: 0.7;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 48px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.4;
+  }
+
+  h2 {
+    font-family: var(--title);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+
+  .section-lead {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    color: rgba(245,240,232,0.6);
+    line-height: 1.9;
+    font-weight: 300;
+    margin-bottom: 56px;
+    max-width: 560px;
+  }
+
+  /* ─── CONCEPT ─── */
+  .concept-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .concept-text h2 {
+    margin-bottom: 24px;
+  }
+
+  .concept-text p {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: rgba(245,240,232,0.65);
+    line-height: 2;
+    margin-bottom: 16px;
+  }
+
+  .concept-visual {
+    position: relative;
+    aspect-ratio: 3/4;
+    border: 1px solid var(--border);
+  }
+
+  .concept-visual-inner {
+    position: absolute;
+    inset: 16px;
+    background: linear-gradient(135deg, #1a120a 0%, #0d0d0d 50%, #0a0a14 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .concept-visual-inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 50% 30%, rgba(201,168,76,0.12) 0%, transparent 60%);
+  }
+
+  .concept-visual-text {
+    font-family: var(--title);
+    font-size: 5rem;
+    color: rgba(201,168,76,0.08);
+    letter-spacing: 0.1em;
+    line-height: 1;
+    text-align: center;
+    user-select: none;
+    position: relative;
+  }
+
+  .concept-corner {
+    position: absolute;
+    width: 20px; height: 20px;
+  }
+
+  .concept-corner-tl { top: 0; left: 0; border-top: 1px solid var(--gold); border-left: 1px solid var(--gold); }
+  .concept-corner-tr { top: 0; right: 0; border-top: 1px solid var(--gold); border-right: 1px solid var(--gold); }
+  .concept-corner-bl { bottom: 0; left: 0; border-bottom: 1px solid var(--gold); border-left: 1px solid var(--gold); }
+  .concept-corner-br { bottom: 0; right: 0; border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold); }
+
+  /* ─── CAST ─── */
+  .cast-section {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 120px 0;
+  }
+
+  .cast-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  .cast-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .cast-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cast-img {
+    aspect-ratio: 3/4;
+    background: var(--surface2);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .cast-img-bg {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cast-img-bg.p1 {
+    background: linear-gradient(160deg, #1a0e1e 0%, #0d0d0d 60%, #0a0d14 100%);
+  }
+  .cast-img-bg.p2 {
+    background: linear-gradient(160deg, #0e1a16 0%, #0d0d0d 60%, #14100a 100%);
+  }
+  .cast-img-bg.p3 {
+    background: linear-gradient(160deg, #1a100e 0%, #0d0d0d 60%, #0a0e1a 100%);
+  }
+
+  .cast-silhouette {
+    width: 80px;
+    opacity: 0.12;
+  }
+
+  .cast-img::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 50%;
+    background: linear-gradient(to top, rgba(8,8,8,0.8) 0%, transparent 100%);
+  }
+
+  .cast-rank {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 6px;
+    opacity: 0.8;
+  }
+
+  .cast-name {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    margin-bottom: 4px;
+  }
+
+  .cast-name-ruby {
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+
+  .cast-profile {
+    font-size: 0.8rem;
+    color: rgba(245,240,232,0.55);
+    line-height: 1.7;
+  }
+
+  /* ─── SYSTEM ─── */
+  .system-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .system-card {
+    border: 1px solid var(--border);
+    padding: 32px;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+
+  .system-card:hover { border-color: rgba(201,168,76,0.4); }
+
+  .system-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 40px; height: 1px;
+    background: var(--gold);
+  }
+
+  .system-card h3 {
+    font-family: var(--title);
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+    color: var(--gold-light);
+  }
+
+  .system-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .system-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .system-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .system-row-label { color: var(--muted); font-size: 0.8rem; }
+  .system-row-value { font-family: var(--serif); font-size: 1rem; color: var(--white); }
+
+  /* ─── ACCESS ─── */
+  .access-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .access-map {
+    aspect-ratio: 4/3;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .access-map-inner {
+    text-align: center;
+  }
+
+  .map-pin {
+    font-size: 32px;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .map-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+  }
+
+  .access-info { display: flex; flex-direction: column; gap: 28px; }
+
+  .access-item {}
+
+  .access-item-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    opacity: 0.7;
+    margin-bottom: 6px;
+  }
+
+  .access-item-value {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--white);
+  }
+
+  .access-item-sub {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* ─── RECRUIT ─── */
+  .recruit-section {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 120px 0;
+  }
+
+  .recruit-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  .recruit-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 48px;
+  }
+
+  .recruit-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 28px;
+    text-align: center;
+    transition: border-color 0.3s;
+  }
+
+  .recruit-card:hover { border-color: rgba(201,168,76,0.5); }
+
+  .recruit-icon { font-size: 28px; margin-bottom: 12px; display: block; }
+
+  .recruit-card h4 {
+    font-family: var(--title);
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+  }
+
+  .recruit-card p {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .recruit-cta {
+    margin-top: 48px;
+    text-align: center;
+  }
+
+  .recruit-cta a {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--gold);
+    color: var(--bg);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    padding: 16px 56px;
+    text-decoration: none;
+    font-family: var(--mono);
+    transition: background 0.3s;
+  }
+
+  .recruit-cta a:hover { background: var(--gold-light); }
+
+  /* ─── CONTACT ─── */
+  .contact-section {
+    text-align: center;
+    padding: 120px 48px;
+    border-top: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(201,168,76,0.04) 0%, transparent 70%);
+  }
+
+  .contact-section h2 { margin-bottom: 16px; position: relative; }
+
+  .contact-section p {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: rgba(245,240,232,0.5);
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .contact-tel {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-bottom: 8px;
+    position: relative;
+  }
+
+  .contact-hours {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    padding: 14px 40px;
+    text-decoration: none;
+    font-family: var(--mono);
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .contact-btn:hover { background: var(--gold); color: var(--bg); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .footer-logo {
+    font-family: var(--title);
+    font-size: 1.1rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+
+  .footer-copy {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 10px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    section { padding: 80px 24px; }
+    .concept-grid { grid-template-columns: 1fr; gap: 40px; }
+    .cast-inner { padding: 0 24px; }
+    .cast-grid { grid-template-columns: 1fr; gap: 40px; }
+    .system-grid { grid-template-columns: 1fr; }
+    .access-grid { grid-template-columns: 1fr; }
+    .recruit-inner { padding: 0 24px; }
+    .recruit-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
+    .footer-links { justify-content: center; }
+  }
+
+  /* ─── ANIMATIONS ─── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">CLUB NOIR</a>
+  <ul class="nav-links">
+    <li><a href="#concept">CONCEPT</a></li>
+    <li><a href="#cast">CAST</a></li>
+    <li><a href="#system">SYSTEM</a></li>
+    <li><a href="#access">ACCESS</a></li>
+    <li><a href="#recruit">RECRUIT</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-ornament"></div>
+  <div class="hero-content">
+    <div class="hero-pre">ROPPONGI · PREMIER CLUB</div>
+    <div class="hero-title">CLUB NOIR</div>
+    <div class="hero-subtitle">TOKYO · ROPPONGI</div>
+    <div class="hero-divider"></div>
+    <p class="hero-copy">
+      夜の六本木に息づく、静謐な煌めき。<br>
+      上質な時間を、あなたとともに。
+    </p>
+    <a href="#concept" class="hero-cta">ENTER</a>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</div>
+
+<!-- CONCEPT -->
+<section id="concept">
+  <div class="concept-grid">
+    <div class="concept-text fade-in">
+      <div class="section-label">CONCEPT</div>
+      <h2>静謐と煌めきの<br>交差点</h2>
+      <p>CLUB NOIRは、六本木の夜景を望む静かな空間に佇む、大人のためのプレミアムクラブです。</p>
+      <p>厳選されたキャスト、こだわりのドリンク、そして研ぎ澄まされたサービスが、日常を離れた特別な時間を創り出します。</p>
+      <p>喧騒から離れ、本物の贅沢を知る方々へ。ノワールは、その静かな自信に応えます。</p>
+    </div>
+    <div class="concept-visual fade-in">
+      <div class="concept-corner-tl concept-corner"></div>
+      <div class="concept-corner-tr concept-corner"></div>
+      <div class="concept-corner-bl concept-corner"></div>
+      <div class="concept-corner-br concept-corner"></div>
+      <div class="concept-visual-inner">
+        <div class="concept-visual-text">NOIR</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAST -->
+<div class="cast-section" id="cast">
+  <div class="cast-inner">
+    <div class="section-label fade-in">CAST</div>
+    <h2 class="fade-in">キャスト紹介</h2>
+    <p class="section-lead fade-in">洗練された会話と品格ある佇まい。ノワールを彩る個性豊かなキャストたちがお迎えします。</p>
+    <div class="cast-grid">
+      <div class="cast-card fade-in">
+        <div class="cast-img">
+          <div class="cast-img-bg p1">
+            <svg class="cast-silhouette" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="50" cy="28" rx="18" ry="20" fill="white"/>
+              <path d="M20 140 Q30 80 50 75 Q70 80 80 140" fill="white"/>
+              <path d="M15 100 Q10 70 25 60 Q35 55 50 75 Q65 55 75 60 Q90 70 85 100" fill="white"/>
+            </svg>
+          </div>
+        </div>
+        <div class="cast-rank">NO.1 · PRINCESS</div>
+        <div class="cast-name">七海 リラ</div>
+        <div class="cast-name-ruby">NANAMI LILA</div>
+        <p class="cast-profile">洗練されたユーモアと深みのある会話で、多くのお客様を虜にする当店のエース。笑顔の温かさに思わず時間を忘れてしまいます。</p>
+      </div>
+      <div class="cast-card fade-in">
+        <div class="cast-img">
+          <div class="cast-img-bg p2">
+            <svg class="cast-silhouette" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="50" cy="28" rx="18" ry="20" fill="white"/>
+              <path d="M20 140 Q30 80 50 75 Q70 80 80 140" fill="white"/>
+              <path d="M15 100 Q10 70 25 60 Q35 55 50 75 Q65 55 75 60 Q90 70 85 100" fill="white"/>
+            </svg>
+          </div>
+        </div>
+        <div class="cast-rank">NO.2 · QUEEN</div>
+        <div class="cast-name">碧 ソフィア</div>
+        <div class="cast-name-ruby">AOI SOFIA</div>
+        <p class="cast-profile">知性と艶やかさを兼ね備えた、ノワール屈指のホスピタリティ。ビジネスの話から趣味の話まで、どんな話題にも寄り添います。</p>
+      </div>
+      <div class="cast-card fade-in">
+        <div class="cast-img">
+          <div class="cast-img-bg p3">
+            <svg class="cast-silhouette" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="50" cy="28" rx="18" ry="20" fill="white"/>
+              <path d="M20 140 Q30 80 50 75 Q70 80 80 140" fill="white"/>
+              <path d="M15 100 Q10 70 25 60 Q35 55 50 75 Q65 55 75 60 Q90 70 85 100" fill="white"/>
+            </svg>
+          </div>
+        </div>
+        <div class="cast-rank">NO.3 · STAR</div>
+        <div class="cast-name">月城 ルナ</div>
+        <div class="cast-name-ruby">TSUKISHIRO LUNA</div>
+        <p class="cast-profile">透明感のある美しさと明るいキャラクターが融合した新星。デビューから僅かでトップ3入りを果たした、注目の存在です。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SYSTEM -->
+<section id="system">
+  <div class="section-label fade-in">SYSTEM</div>
+  <h2 class="fade-in">ご利用案内</h2>
+  <p class="section-lead fade-in">初めてのお客様も安心してお楽しみいただけるよう、明瞭な料金体系をご用意しております。</p>
+  <div class="system-grid fade-in">
+    <div class="system-card">
+      <h3>BASIC CHARGE</h3>
+      <div class="system-rows">
+        <div class="system-row">
+          <span class="system-row-label">席料（90分）</span>
+          <span class="system-row-value">¥5,000〜</span>
+        </div>
+        <div class="system-row">
+          <span class="system-row-label">延長（30分）</span>
+          <span class="system-row-value">¥2,000〜</span>
+        </div>
+        <div class="system-row">
+          <span class="system-row-label">サービス料</span>
+          <span class="system-row-value">20%</span>
+        </div>
+        <div class="system-row">
+          <span class="system-row-label">指名料</span>
+          <span class="system-row-value">¥2,000〜</span>
+        </div>
+      </div>
+    </div>
+    <div class="system-card">
+      <h3>DRINK MENU</h3>
+      <div class="system-rows">
+        <div class="system-row">
+          <span class="system-row-label">ボトルキープ</span>
+          <span class="system-row-value">¥15,000〜</span>
+        </div>
+        <div class="system-row">
+          <span class="system-row-label">シャンパン</span>
+          <span class="system-row-value">¥20,000〜</span>
+        </div>
+        <div class="system-row">
+          <span class="system-row-label">カクテル</span>
+          <span class="system-row-value">¥1,500〜</span>
+        </div>
+        <div class="system-row">
+          <span class="system-row-label">ソフトドリンク</span>
+          <span class="system-row-value">¥800〜</span>
+        </div>
+      </div>
+    </div>
+    <div class="system-card">
+      <h3>OPEN HOURS</h3>
+      <div class="system-rows">
+        <div class="system-row">
+          <span class="system-row-label">平日</span>
+          <span class="system-row-value">20:00〜翌4:00</span>
+        </div>
+        <div class="system-row">
+          <span class="system-row-label">土日祝</span>
+          <span class="system-row-value">19:00〜翌5:00</span>
+        </div>
+        <div class="system-row">
+          <span class="system-row-label">定休日</span>
+          <span class="system-row-value">不定休</span>
+        </div>
+      </div>
+    </div>
+    <div class="system-card">
+      <h3>VIP ROOM</h3>
+      <div class="system-rows">
+        <div class="system-row">
+          <span class="system-row-label">VIPルーム</span>
+          <span class="system-row-value">要予約</span>
+        </div>
+        <div class="system-row">
+          <span class="system-row-label">完全個室</span>
+          <span class="system-row-value">最大6名様</span>
+        </div>
+        <div class="system-row">
+          <span class="system-row-label">貸切</span>
+          <span class="system-row-value">応相談</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section id="access" style="border-top: 1px solid var(--border); padding-top: 120px;">
+  <div class="section-label fade-in">ACCESS</div>
+  <h2 class="fade-in">アクセス</h2>
+  <div class="access-grid fade-in">
+    <div class="access-map">
+      <div class="access-map-inner">
+        <span class="map-pin">📍</span>
+        <div class="map-label">ROPPONGI · TOKYO</div>
+      </div>
+    </div>
+    <div class="access-info">
+      <div class="access-item">
+        <div class="access-item-label">ADDRESS</div>
+        <div class="access-item-value">東京都港区六本木○-○-○<br>NOIRビル B1F</div>
+      </div>
+      <div class="access-item">
+        <div class="access-item-label">STATION</div>
+        <div class="access-item-value">東京メトロ日比谷線<br>「六本木駅」3番出口 徒歩3分</div>
+        <div class="access-item-sub">都営大江戸線「六本木駅」7番出口 徒歩5分</div>
+      </div>
+      <div class="access-item">
+        <div class="access-item-label">PARKING</div>
+        <div class="access-item-value">近隣コインパーキングをご利用ください</div>
+      </div>
+      <div class="access-item">
+        <div class="access-item-label">RESERVATION</div>
+        <div class="access-item-value" style="color: var(--gold); font-size: 1.4rem;">03-XXXX-XXXX</div>
+        <div class="access-item-sub">当日予約も承っております</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECRUIT -->
+<div class="recruit-section" id="recruit">
+  <div class="recruit-inner">
+    <div class="section-label fade-in">RECRUIT</div>
+    <h2 class="fade-in">キャスト募集</h2>
+    <p class="section-lead fade-in">未経験の方も大歓迎。充実のサポート体制で、あなたらしい輝き方を見つけましょう。</p>
+    <div class="recruit-grid fade-in">
+      <div class="recruit-card">
+        <span class="recruit-icon">💰</span>
+        <h4>HIGH INCOME</h4>
+        <p>業界トップクラスの時給設定。頑張りが収入に直結する明確なシステムです。</p>
+      </div>
+      <div class="recruit-card">
+        <span class="recruit-icon">✨</span>
+        <h4>SUPPORT</h4>
+        <p>未経験者向けの丁寧な研修制度。先輩キャストが一からサポートします。</p>
+      </div>
+      <div class="recruit-card">
+        <span class="recruit-icon">🌸</span>
+        <h4>ENVIRONMENT</h4>
+        <p>清潔感のある上質な空間と、安心して働ける職場環境を大切にしています。</p>
+      </div>
+    </div>
+    <div class="recruit-cta fade-in">
+      <a href="#contact">応募・お問い合わせ →</a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="section-label fade-in" style="justify-content: center; gap: 16px;">
+    <span style="flex: none; max-width: none; margin: 0 auto;">CONTACT</span>
+  </div>
+  <h2 class="fade-in">ご予約・お問い合わせ</h2>
+  <p class="fade-in">お電話またはLINEにてお気軽にご連絡ください</p>
+  <div class="contact-tel fade-in">03-XXXX-XXXX</div>
+  <div class="contact-hours fade-in">OPEN HOURS · 20:00 — 翌4:00</div>
+  <a href="#" class="contact-btn fade-in">LINE で予約する</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">CLUB NOIR</div>
+  <ul class="footer-links">
+    <li><a href="#concept">CONCEPT</a></li>
+    <li><a href="#cast">CAST</a></li>
+    <li><a href="#system">SYSTEM</a></li>
+    <li><a href="#recruit">RECRUIT</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 CLUB NOIR TOKYO. ALL RIGHTS RESERVED.</div>
+</footer>
+
+<script>
+  // Particles
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.cssText = `
+      left: ${Math.random() * 100}%;
+      width: ${Math.random() * 2 + 1}px;
+      height: ${Math.random() * 2 + 1}px;
+      animation-duration: ${Math.random() * 8 + 6}s;
+      animation-delay: ${Math.random() * 8}s;
+    `;
+    container.appendChild(p);
+  }
+
+  // Fade in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((el, i) => {
+      if (el.isIntersecting) {
+        setTimeout(() => el.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  setTimeout(() => {
+    document.querySelectorAll('.fade-in').forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight) {
+        el.classList.add('visible');
+      }
+    });
+  }, 100);
+</script>
+</body>
+</html>
